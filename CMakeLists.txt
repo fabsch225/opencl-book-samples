@@ -10,6 +10,9 @@ find_package( OpenCL REQUIRED )
 
 include_directories( ${OPENCL_INCLUDE_DIRS} )
 include_directories( "${CMAKE_SOURCE_DIR}/khronos" )
+add_compile_definitions ( CL_HPP_MINIMUM_OPENCL_VERSION=200)
+add_compile_definitions ( CL_HPP_TARGET_OPENCL_VERSION=200)
+add_compile_definitions ( CL_TARGET_OPENCL_VERSION=200)
 
 SUBDIRS(src)
 
