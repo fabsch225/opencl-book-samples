@@ -121,7 +121,7 @@ int main(int argc, char** argv)
 	{
 		errNum = clGetDeviceIDs(
             platformIDs[i], 
-            CL_DEVICE_TYPE_CPU, 
+            CL_DEVICE_TYPE_GPU,
             0,
             NULL,
             &numDevices);
@@ -134,7 +134,7 @@ int main(int argc, char** argv)
 		   	deviceIDs = (cl_device_id *)alloca(sizeof(cl_device_id) * numDevices);
 			errNum = clGetDeviceIDs(
 				platformIDs[i],
-				CL_DEVICE_TYPE_CPU,
+				CL_DEVICE_TYPE_GPU,
 				numDevices, 
 				&deviceIDs[0], 
 				NULL);
@@ -143,9 +143,9 @@ int main(int argc, char** argv)
 	   }
 	}
 
-	// Check to see if we found at least one CPU device, otherwise return
+	// Check to see if we found at least one GPU device, otherwise return
 	if (deviceIDs == NULL) {
-		std::cout << "No CPU device found" << std::endl;
+		std::cout << "No GPU device found" << std::endl;
 		exit(-1);
 	}
 
