@@ -25,7 +25,7 @@
 
 #define __CL_ENABLE_EXCEPTIONS
 
-#include <CL/cl.hpp>
+#include <CL/opencl.hpp>
 
 #if defined(__APPLE__) || defined(__MACOSX)
 #include <OpenGL/opengl.h>

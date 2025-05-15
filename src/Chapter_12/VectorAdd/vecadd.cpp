@@ -17,7 +17,7 @@
 #define __CL_ENABLE_EXCEPTIONS
 
 
-#include <CL/cl.hpp>
+#include <CL/opencl.hpp>
 
 #include <cstdio>
 #include <cstdlib>

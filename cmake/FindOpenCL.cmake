@@ -23,14 +23,14 @@ IF (APPLE)
 
   FIND_LIBRARY(OPENCL_LIBRARIES OpenCL DOC "OpenCL lib for OSX")
   FIND_PATH(OPENCL_INCLUDE_DIRS OpenCL/cl.h DOC "Include for OpenCL on OSX")
-  FIND_PATH(_OPENCL_CPP_INCLUDE_DIRS OpenCL/cl.hpp DOC "Include for OpenCL CPP bindings on OSX")
+  FIND_PATH(_OPENCL_CPP_INCLUDE_DIRS OpenCL/opencl.hpp DOC "Include for OpenCL CPP bindings on OSX")
 
 ELSE (APPLE)
 
 	IF (WIN32)
 	
 	    FIND_PATH(OPENCL_INCLUDE_DIRS CL/cl.h)
-	    FIND_PATH(_OPENCL_CPP_INCLUDE_DIRS CL/cl.hpp)
+	    FIND_PATH(_OPENCL_CPP_INCLUDE_DIRS CL/opencl.hpp)
 	
 	    # The AMD SDK currently installs both x86 and x86_64 libraries
 	    # This is only a hack to find out architecture
@@ -55,7 +55,7 @@ ELSE (APPLE)
 	    
 	    # On Win32 search relative to the library
 	    FIND_PATH(OPENCL_INCLUDE_DIRS CL/cl.h PATHS "${_OPENCL_INC_CAND}" $ENV{CUDA_INC_PATH} $ENV{CUDA_PATH}/include)
-	    FIND_PATH(_OPENCL_CPP_INCLUDE_DIRS CL/cl.hpp PATHS "${_OPENCL_INC_CAND}" $ENV{CUDA_INC_PATH} $ENV{CUDA_PATH}/include)
+	    FIND_PATH(_OPENCL_CPP_INCLUDE_DIRS CL/opencl.hpp PATHS "${_OPENCL_INC_CAND}" $ENV{CUDA_INC_PATH} $ENV{CUDA_PATH}/include)
 	
 	ELSE (WIN32)
 
@@ -71,7 +71,7 @@ ELSE (APPLE)
             # in /usr/include, therefore also search relative
             # to the library
             FIND_PATH(OPENCL_INCLUDE_DIRS CL/cl.h PATHS ${_OPENCL_INC_CAND} "/usr/local/cuda/include")
-            FIND_PATH(_OPENCL_CPP_INCLUDE_DIRS CL/cl.hpp PATHS ${_OPENCL_INC_CAND} "/usr/local/cuda/include")
+            FIND_PATH(_OPENCL_CPP_INCLUDE_DIRS CL/opencl.hpp PATHS ${_OPENCL_INC_CAND} "/usr/local/cuda/include")
 
 	ENDIF (WIN32)
 
