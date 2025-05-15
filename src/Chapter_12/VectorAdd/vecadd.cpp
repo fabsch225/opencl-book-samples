@@ -14,7 +14,7 @@
 //    This is a simple example that demonstrates use OpenCL C++ Wrapper API.
 
 // Enable OpenCL C++ exceptions
-#define __CL_ENABLE_EXCEPTIONS
+#define CL_HPP_ENABLE_EXCEPTIONS
 
 // to create Program::Sources in a simple way
 #define CL_HPP_ENABLE_PROGRAM_CONSTRUCTION_FROM_ARRAY_COMPATIBILITY
