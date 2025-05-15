@@ -125,7 +125,7 @@ compileProgram(const char * vsrc, const char * psrc)
 
 //------------------------------------------------------------------------
 
-static bool useGPU = false;
+static bool useGPU = true;
 size_t local_work_size[3];
 
 static int numVBOs = 1;
@@ -427,6 +427,7 @@ main(int argc, char ** argv)
         char Str[256];
         cl_platform_id *platform = NULL;
 
+#if 0
         for(cl_uint i = 0; i < num_platforms; i++) {
             err = clGetPlatformInfo(platforms[i], CL_PLATFORM_NAME, 256, Str, &cb);
             if(CL_SUCCESS != err) {
@@ -451,6 +452,9 @@ main(int argc, char ** argv)
                 << std::endl;
             exit(1);
         }
+#else
+        platform = &platforms[0];
+#endif
 
 #ifdef _WIN32
         HGLRC glCtx = wglGetCurrentContext();

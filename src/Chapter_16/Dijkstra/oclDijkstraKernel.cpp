@@ -487,7 +487,7 @@ void runDijkstra( cl_context context, cl_device_id deviceId, GraphData* graph,
 
     // Program handle
     cl_program program = loadAndBuildProgram( context, "dijkstra.cl" );
-    if (program <= 0 )
+    if (program == NULL )
     {
         return;
     }

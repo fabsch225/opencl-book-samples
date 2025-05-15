@@ -55,13 +55,13 @@ void histogram_image_rgba_fp(image2d_t img, int num_pixels_per_workitem, global 
     int     local_size = (int)get_local_size(0) * (int)get_local_size(1);
     int     image_width = get_image_width(img);
     int     image_height = get_image_height(img);
-    int     group_indx = mad24(get_group_id(1), get_num_groups(0), get_group_id(0)) * 257 * 3;
+    int     group_indx = mad24((int)get_group_id(1), get_num_groups(0), get_group_id(0)) * 257 * 3;
     int     x = get_global_id(0);
     int     y = get_global_id(1);
     
     local uint  tmp_histogram[257 * 3];
         
-    int     tid = mad24(get_local_id(1), get_local_size(0), get_local_id(0));
+    int     tid = mad24((int)get_local_id(1), get_local_size(0), get_local_id(0));
     int     j = 257 * 3;
     int     indx = 0;
     
@@ -163,13 +163,13 @@ void histogram_image_rgba_unorm8(image2d_t img, int num_pixels_per_workitem, glo
     int     local_size = (int)get_local_size(0) * (int)get_local_size(1);
     int     image_width = get_image_width(img);
     int     image_height = get_image_height(img);
-    int     group_indx = mad24(get_group_id(1), get_num_groups(0), get_group_id(0)) * 256 * 3;
+    int     group_indx = mad24((int)get_group_id(1), get_num_groups(0), get_group_id(0)) * 256 * 3;
     int     x = get_global_id(0);
     int     y = get_global_id(1);
     
     local uint  tmp_histogram[256 * 3];
         
-    int     tid = mad24(get_local_id(1), get_local_size(0), get_local_id(0));
+    int     tid = mad24((int)get_local_id(1), get_local_size(0), get_local_id(0));
     int     j = 256 * 3;
     int     indx = 0;
     
