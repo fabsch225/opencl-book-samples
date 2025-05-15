@@ -8,6 +8,11 @@
 //            http://www.openclprogrammingguide.com
 //
 
+#define CL_HPP_ENABLE_EXCEPTIONS
+#define CL_HPP_ENABLE_PROGRAM_CONSTRUCTION_FROM_ARRAY_COMPATIBILITY
+
+#include <CL/opencl.hpp>
+
 // sinewave.cpp
 //
 //    Simple OpenCL and OpenGL application to  demonstrate use OpenCL C++ Wrapper API.
@@ -23,10 +28,6 @@
 #include <GL/glut.h>
 #endif
 
-#define CL_HPP_ENABLE_EXCEPTIONS
-
-#include <CL/opencl.hpp>
-
 #if defined(__APPLE__) || defined(__MACOSX)
 #include <OpenGL/opengl.h>
 #else
@@ -38,7 +39,7 @@
 #include <iostream>
 #include <fstream>
 
-#include "bmpLoader.hpp"  // Header file for Bitmap image
+//#include "bmpLoader.hpp"  // Header file for Bitmap image
 
 #ifndef _WIN32
 #include <GL/glx.h>
@@ -213,19 +214,26 @@ void runCL()
 
     queue.enqueueAcquireGLObjects(&v);
 
+#if 0
     cl::KernelFunctor func = kernel.bind(
         queue,
         cl::NDRange(meshWidth, meshHeight),
         cl::NDRange(local_work_size[0], local_work_size[1]));
+#else
+    cl::KernelFunctor func = cl::KernelFunctor<cl::Buffer&, const unsigned int&, const unsigned int&, float&>(kernel);
+    cl::EnqueueArgs args = cl::EnqueueArgs(
+        cl::NDRange(meshWidth, meshHeight),
+        cl::NDRange(local_work_size[0], local_work_size[1]));
+#endif
 
     if(mapAll) {
         for(int i = 0; i < numVBOs; i++) {
-            cl::Event event = func(pVbo[i], meshWidth, meshHeight, anim );
+            cl::Event event = func(args, pVbo[i], meshWidth, meshHeight, anim );
             event.wait();
         }
     }
     else {
-        cl::Event event = func(pVbo[currVBO], meshWidth, meshHeight, anim );
+        cl::Event event = func(args, pVbo[currVBO], meshWidth, meshHeight, anim );
         event.wait();
     }
 
