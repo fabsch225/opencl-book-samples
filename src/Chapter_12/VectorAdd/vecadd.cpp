@@ -16,6 +16,8 @@
 // Enable OpenCL C++ exceptions
 #define __CL_ENABLE_EXCEPTIONS
 
+// to create Program::Sources in a simple way
+#define CL_HPP_ENABLE_PROGRAM_CONSTRUCTION_FROM_ARRAY_COMPATIBILITY
 
 #include <CL/opencl.hpp>
 
